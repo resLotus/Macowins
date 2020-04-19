@@ -2,18 +2,22 @@ package prendas;
 
 import estados.Estado;
 
-public abstract class Prenda {
-	float precioPropio;
+public class Prenda {
+	double precioPropio;
 	Estado estado;
+	Tipo tipo;
 	
-	public Prenda(float precioPropio, Estado estado) {
+	public Prenda(double precioPropio, Estado estado, Tipo tipo) {
 		this.precioPropio = precioPropio;
 		this.estado = estado;
+		this.tipo = tipo;
 	}
 	
-	public float precioFinal() {
-		return precioPropio + estado.precioEstado(precioPropio);
+	public double precioFinal() {
+		return estado.precioFinal(precioPropio);
 	}
 	
-	abstract public String tipo();
+	public Tipo tipo() {
+		return tipo;
+	};
 }

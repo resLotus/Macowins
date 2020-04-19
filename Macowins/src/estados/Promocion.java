@@ -1,13 +1,13 @@
 package estados;
 
 public class Promocion implements Estado{
-	float descuento = 0;
+	double descuento = 0;
 	
-	public float precioEstado(float precioPropioDeLaPrenda) {
-		return -descuento;
+	public double precioFinal(double precioPropioDeLaPrenda) {
+		return precioPropioDeLaPrenda - descuento;
 	};
 	
-	public void cambiarDescuento(float nuevoDescuento) {
+	public void cambiarDescuento(double nuevoDescuento) {
 		descuento = nuevoDescuento;
 	}
 }

@@ -1,5 +1,5 @@
 package estados;
 
 public interface Estado {
-	public float precioEstado(float precioPropioDeLaPrenda);
+	public double precioFinal(double precioPropioDeLaPrenda);
 }

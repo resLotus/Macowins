@@ -1,13 +1,20 @@
 package ventas;
 
-public class Tarjeta implements FormaDePago {
-	float coeficiente = 1;
+import java.util.Date;
+
+public class Tarjeta extends Venta {
+	double coeficiente = 1;
 	
-	public float cobrarTotal(float precioPrendas, int numeroDeCuotas) {
-		return numeroDeCuotas * coeficiente + 0.01f * precioPrendas;
+	public Tarjeta(Date fechaDeLaVenta, int numeroDeCuotas) {
+		super(fechaDeLaVenta, numeroDeCuotas);
+	}
+	
+	@Override
+	public double importe() {
+		return numeroDeCuotas * coeficiente + 0.01 * super.importe() + super.importe();
 	}
 
-	public void cambiarCoeficiente(float nuevoCoeficiente) {
+	public void cambiarCoeficiente(double nuevoCoeficiente) {
 		coeficiente = nuevoCoeficiente;
 	}
 }

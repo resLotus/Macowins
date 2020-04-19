@@ -1,7 +1,7 @@
 package estados;
 
 public class Liquidacion implements Estado{
-	public float precioEstado(float precioPropioDeLaPrenda) {
-		return -(precioPropioDeLaPrenda * 0.5f);
+	public double precioFinal(double precioPropioDeLaPrenda) {
+		return precioPropioDeLaPrenda * 0.5f;
 	};
 }

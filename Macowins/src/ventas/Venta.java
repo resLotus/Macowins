@@ -1,37 +1,25 @@
 package ventas;
 
-import prendas.Prenda;
 import java.util.List;
 import java.util.Date;
 
 public class Venta {
-	List<Prenda> prendasEnVenta;
+	List<Item> items;
 	Date fechaDeLaVenta;
-	FormaDePago formaDePago;
 	int numeroDeCuotas;
 	RegistroVentas registroVentas;
 	
-	public Venta(Date fechaDeLaVenta, FormaDePago formaDePago, int numeroDeCuotas) {
+	public Venta(Date fechaDeLaVenta, int numeroDeCuotas) {
 		this.fechaDeLaVenta = fechaDeLaVenta;
-		this.formaDePago = formaDePago;
 		this.numeroDeCuotas = numeroDeCuotas;		
 	}
 	
-	void agregarPrendaAVenta(Prenda prenda) {
-		prendasEnVenta.add(prenda);
+	int cantidadDePrendas() {
+		return items.stream().map(item -> item.getCantidad()).reduce(0, (a, b) -> a + b);
 	}
 	
-	float precioPrendas() {
-		return prendasEnVenta.stream().map(prenda -> prenda.precioFinal()).reduce(0.0f, (a, b) -> a + b);
-	}
-	
-	long cantidadDePrendas() {
-		return prendasEnVenta.stream().count();
-	}
-	
-	float cobrarTotal() {
-		registroVentas.agregarVenta(this);
-		return formaDePago.cobrarTotal(this.precioPrendas(), numeroDeCuotas);
+	public double importe() {
+		return items.stream().map(item -> item.importe()).reduce(0.0, (a, b) -> a + b);
 	}
 	
 	Date fecha() {return fechaDeLaVenta;}
